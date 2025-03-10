@@ -6,7 +6,7 @@ class Node {
   }
 }
 
-class Tree {
+export class Tree {
   constructor(array) {
     let sortedArray = this.sortArray(array);
     this.root = this.buildTree(sortedArray, 0, sortedArray.length - 1);
@@ -173,47 +173,3 @@ class Tree {
     this.root = this.buildTree(newArray);
   }
 }
-
-const prettyPrint = (node, prefix = "", isLeft = true) => {
-  if (node === null) {
-    return;
-  }
-  if (node.right !== null) {
-    prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
-  }
-  console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
-  if (node.left !== null) {
-    prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
-  }
-};
-
-// Print the tree structure
-
-// Sample input array
-let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-
-// Create tree instance
-let node = new Tree(arr);
-
-node.insert(14);
-
-node.deleteItem(9);
-
-console.log(node.find(4));
-
-node.insert(7000);
-node.insert(8000);
-node.insert(325);
-
-prettyPrint(node.root);
-
-let node4 = node.find(4);
-
-console.log(node.depth(node4));
-
-console.log(node.isBalanced());
-
-node.rebalance();
-
-console.log(node.isBalanced());
-prettyPrint(node.root);
